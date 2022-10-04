@@ -28,34 +28,32 @@
     border-width: 2rem;
 }
 
+
 .arrow {
     width: 0;
     height: 0;
     border-left: $arrow-border-side solid transparent;
     border-right: $arrow-border-side solid transparent;
-
-    &-top {
-        @extend .arrow;
-        border-top: $arrow-border-base solid black;
-    }
-    &-bottom {
-        @extend .arrow;
-        border-bottom: $arrow-border-base solid black;
-    }
 }
 
-.arrow-down {
-    width: 0;
-    height: 0;
-    border-left: $arrow-border-side solid transparent;
-    border-right: $arrow-border-side solid transparent;
-    border-top: $arrow-border-base solid black;
+.arrow-white {
+    border-top-color: $white;
+    border-bottom-color: $white;
 }
 
-.boardContainer {
-    @include flexCenter;
-    width: $board-container-width;
-    height: $board-container-height;
-    background-color: $black;
-    flex-direction: column;
+.arrow-black {
+    border-top-color: $black;
+    border-bottom-color: $black;
+}
+
+.arrow-top {
+    @extend .arrow;
+    border-top-width: $arrow-border-base;
+    border-top-style: solid;
+}
+
+.arrow-bottom {
+    @extend .arrow;
+    border-bottom-width: $arrow-border-base;
+    border-bottom-style: solid;
 }
