@@ -8,14 +8,14 @@
     border-right: $arrow-border-side solid transparent;
 }
 
-.arrow-white {
-    border-top-color: $white;
-    border-bottom-color: $white;
+.arrow-home{
+    border-top-color: $grey;
+    border-bottom-color: $grey;
 }
 
-.arrow-black {
-    border-top-color: $black;
-    border-bottom-color: $black;
+.arrow-away{
+    border-top-color: $orange;
+    border-bottom-color: $orange;
 }
 
 .arrow-top {

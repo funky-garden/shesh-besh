@@ -2,15 +2,14 @@ import React from 'react'
 import './Arrow.scss'
 
 const positionToColor = (section, index) => {
-    let color = ''
+    let name = ''
     if(section === 'top') {
-        color =  (index % 2) ? 'black' : 'white'
+        name =  (index % 2) ? 'home' : 'away'
     }
     else {
-        color = (index % 2) ? 'white' : 'black'
+        name = (index % 2) ? 'away' : 'home'
     }
-
-    return 'arrow-' + color
+    return 'arrow-' + name
 }
 
 const Arrow = ({section, index}) => {

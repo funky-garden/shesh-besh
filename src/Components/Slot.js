@@ -2,6 +2,7 @@ import React from 'react'
 import './Slot.scss'
 
 import Arrow from './Arrow.js'
+import Piece from './Piece.js'
 
 
 const Slot = ({ section, index }) => {
@@ -17,9 +18,11 @@ const Slot = ({ section, index }) => {
 
 
     const arrow =  <Arrow section={section} index={index} />
+    const piece =  <Piece />
     return (
         <div className='slot'>
             {SlotLayer(arrow)}
+            {SlotLayer([piece, piece, piece])}
         </div>
     )
 }

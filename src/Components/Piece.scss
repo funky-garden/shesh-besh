@@ -1,0 +1,15 @@
+@import 'src/Styles/mixin.scss';
+@import 'src/Styles/variables.scss';
+
+
+
+.piece {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: $black;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: $wood;
+}
+

@@ -11,13 +11,18 @@
     position: absolute;
     width: $slot-width;
     height: $slot-height;
+    flex-direction: column;
 }
 
 .top {
-    @include flexStart;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .bottom {
-    @include flexEnd;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
