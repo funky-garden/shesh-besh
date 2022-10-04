@@ -5,7 +5,7 @@ import Arrow from './Arrow.js'
 import Piece from './Piece.js'
 
 
-const Slot = ({ section, index }) => {
+const Slot = ({ index, section, numPieces, click }) => {
 
     const SlotLayer = (contents) => {
         const name = `slot-layer ${section}`
@@ -18,11 +18,15 @@ const Slot = ({ section, index }) => {
 
 
     const arrow =  <Arrow section={section} index={index} />
-    const piece =  <Piece />
+
+    const pieces = [...Array(numPieces).keys()].map(_ => {
+        return <Piece click={click}/>
+    })
+
     return (
         <div className='slot'>
             {SlotLayer(arrow)}
-            {SlotLayer([piece, piece, piece])}
+            {SlotLayer(pieces)}
         </div>
     )
 }

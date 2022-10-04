@@ -1,8 +1,8 @@
 import React from 'react'
 import './Piece.scss'
 
-const Piece = ({section, index}) => {
-    return <div className='piece' />
+const Piece = ({ click }) => {
+    return <div className='piece' onClick={click}/>
 }
 
 export default Piece
