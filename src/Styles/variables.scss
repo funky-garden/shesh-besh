@@ -1,0 +1,27 @@
+
+// Fixed board size
+$board-container-width: 200rem;
+$board-container-height: 175rem;
+$border-width: 2rem;
+
+//Other fixed sizes
+$middle-gap-height: 10rem; // space between arrows
+
+// Inner Board Dimensions
+$board-width: calc($board-container-width - (2 * $border-width));
+$board-height: calc($board-container-height - (2 * $border-width));
+
+// Board Arrow Dimensions
+$arrow-width: calc($board-width / 6 );
+$arrow-height : calc(($board-height - $middle-gap-height + 1rem) / 2);
+$arrow-border-side: calc($arrow-width / 2 );
+$arrow-border-base: $arrow-height;
+
+
+// Colors
+$wood:  #EDDEA7;
+$blue:  #5CAEE3;
+$red: #B22222;
+$black: #000000;
+$grey: #696969;
+$yellow: #e6e600;

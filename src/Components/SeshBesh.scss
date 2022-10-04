@@ -1,0 +1,10 @@
+@import 'src/Styles/mixin.scss';
+@import 'src/Styles/variables.scss';
+
+.gameContainer {
+    @include flexCenter;
+    width: 100vw;
+    height: 100vh;
+    background-color: $blue;
+    flex-direction: column;
+}
