@@ -19,8 +19,13 @@ const Slot = ({ index, section, numPieces, click }) => {
 
     const arrow =  <Arrow section={section} index={index} />
 
-    const pieces = [...Array(numPieces).keys()].map(_ => {
-        return <Piece click={click}/>
+
+    let whitePieces = [...Array(numPieces[0]).keys()].map(_ => {
+        return <Piece click={() => click(index, 0)} color='white'/>
+    })
+
+    let blackPieces = [...Array(numPieces[1]).keys()].map(_ => {
+        return <Piece click={() => click(index, 1)} color='black'/>
     })
 
     const num = (
@@ -31,7 +36,7 @@ const Slot = ({ index, section, numPieces, click }) => {
         <div className='slot'>
             {SlotLayer(arrow)}
             {SlotLayer(num)}
-            {SlotLayer(pieces)}
+            {SlotLayer([...whitePieces, ...blackPieces])}
         </div>
     )
 }

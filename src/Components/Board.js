@@ -15,9 +15,10 @@ const Quarter = ({ index, pieces, click }) => {
     const section = index < 2 ? 'top' : 'bottom'
 
     const slots = [...Array(6).keys()].map(i => {
-        console.log(i)
         const slotIndex = getSlotIndex(index, i)
-        return <Slot section={section} index={slotIndex} numPieces={pieces[slotIndex]} click={click}/>
+        const whitePieces = pieces[0][slotIndex]
+        const blackPieces = pieces[1][slotIndex]
+        return <Slot section={section} index={slotIndex} numPieces={[whitePieces, blackPieces]} click={click}/>
     })
 
     return (
@@ -47,25 +48,22 @@ export const Board = () => {
     const [ pieces, setPieces ] = useState()
     let gamePieces
     if(!pieces) {
-        gamePieces = new Array(24)
-        gamePieces.fill(0)
-        gamePieces[4] = 1
+        gamePieces =  [
+            Array(24),
+            Array(24)
+        ]
+        gamePieces.forEach(a => a.fill(0))
+        gamePieces[0][0] = 3
+        gamePieces[1][10] = 3
     } else {
         gamePieces = pieces
     }
 
 
-    const onClick = () => {
-        let newIndex
-        for(let i = 0; i < gamePieces.length; i++) {
-            if(gamePieces[i]){
-                newIndex = (i + 1) % 24
-                break
-            }
-        }
-        let newPieces = new Array(24)
-        newPieces.fill(0)
-        newPieces[newIndex] = 1
+    const onClick = (index, color) => {
+        let newPieces = [...gamePieces]
+        newPieces[color][index]--
+        newPieces[color][(index + 1) % 24]++
         setPieces(newPieces)
     }
 

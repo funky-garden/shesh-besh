@@ -1,8 +1,9 @@
 import React from 'react'
 import './Piece.scss'
 
-const Piece = ({ click }) => {
-    return <div className='piece' onClick={click}/>
+const Piece = ({ click, color }) => {
+    const style = { 'backgroundColor' : color}
+    return <div className='piece' onClick={click} style={style}/>
 }
 
 export default Piece
