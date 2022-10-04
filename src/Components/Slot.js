@@ -23,9 +23,14 @@ const Slot = ({ index, section, numPieces, click }) => {
         return <Piece click={click}/>
     })
 
+    const num = (
+        <div>{index}</div>
+    )
+
     return (
         <div className='slot'>
             {SlotLayer(arrow)}
+            {SlotLayer(num)}
             {SlotLayer(pieces)}
         </div>
     )

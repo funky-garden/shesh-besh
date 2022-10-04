@@ -2,11 +2,21 @@ import React, { useState } from 'react'
 import './Board.scss'
 import Slot from './Slot.js'
 
+const getSlotIndex = (quarterIndex, slotIndex) => {
+    if(quarterIndex < 2) {
+        return (6 * quarterIndex ) + ( 5 - slotIndex)
+    }
+    else {
+        return (quarterIndex * 6) + slotIndex
+    }
+}
+
 const Quarter = ({ index, pieces, click }) => {
     const section = index < 2 ? 'top' : 'bottom'
 
     const slots = [...Array(6).keys()].map(i => {
-        const slotIndex = (index * 6 + 5) - i
+        console.log(i)
+        const slotIndex = getSlotIndex(index, i)
         return <Slot section={section} index={slotIndex} numPieces={pieces[slotIndex]} click={click}/>
     })
 
@@ -25,9 +35,9 @@ const MiddleGap = () => {
 const Half = ({ index, pieces, click }) => {
     return (
         <div className='half'>
-            <Quarter index={index} pieces={pieces} click={click} />
+            <Quarter index={index[0]} pieces={pieces} click={click} />
             <MiddleGap/>
-            <Quarter index={index + 2} pieces={pieces} click={click}/>
+            <Quarter index={index[1]} pieces={pieces} click={click}/>
         </div>
     )
 }
@@ -62,8 +72,8 @@ export const Board = () => {
 
     return (
         <div className='board'>
-            <Half index={1} pieces={gamePieces} click={onClick}/>
-            <Half index={0} pieces={gamePieces} click={onClick}/>
+            <Half index={[1, 2]} pieces={gamePieces} click={onClick}/>
+            <Half index={[0, 3]} pieces={gamePieces} click={onClick}/>
         </div>
     )
 }
