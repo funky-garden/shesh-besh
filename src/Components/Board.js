@@ -1,33 +1,16 @@
 import React from 'react'
 import './Board.scss'
-
-const arrowColor = (section, index) => {
-    if(section === 'top') {
-        return index % 2 ? 'black' : 'white'
-    }
-    else {
-        return index % 2 ? 'white' : 'black'
-    }
-}
-
-const Arrows = ({section}) => {
-    const arrow = (name) => {
-        return <div className={name}/>
-    }
-
-    let arrows = []
-    for(let i = 0; i < 6; i++) {
-        const name = `arrow-${arrowColor(section, i)} arrow-${section}`
-        arrows.push(arrow(name))
-    }
-    return arrows
-}
+import Slot from './Slot.js'
 
 const Quarter = ({ section }) => {
+    let slots = []
+    for(let i = 0; i < 6; i++) {
+        slots.push(<Slot section={section} index={i}/>)
+    }
     return (
-            <div className='quarter'>
-                <Arrows section={section}/>
-            </div>
+        <div className='quarter'>
+        {slots}
+    </div>
     )
 }
 
@@ -48,10 +31,10 @@ const Half = () => {
 
 export const Board = () => {
     return (
-            <div className='board'>
-                <Half />
-                <Half />
-            </div>
+        <div className='board'>
+            <Half />
+            <Half />
+        </div>
     )
 }
 

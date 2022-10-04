@@ -9,3 +9,9 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+@mixin flexEnd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

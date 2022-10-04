@@ -1,19 +1,22 @@
 
 // Fixed board size
-$board-container-width: 200rem;
-$board-container-height: 175rem;
+$board-container-width: 100rem;
+$board-container-height: 80rem;
 $border-width: 2rem;
 
 //Other fixed sizes
-$middle-gap-height: 10rem; // space between arrows
+$middle-gap-height: 2rem; // space between arrows
 
 // Inner Board Dimensions
 $board-width: calc($board-container-width - (2 * $border-width));
 $board-height: calc($board-container-height - (2 * $border-width));
 
+// Board Slot Dimensions
+$slot-width: calc($board-width / 6 );
+$slot-height: calc($board-height / 2);
 // Board Arrow Dimensions
-$arrow-width: calc($board-width / 6 );
-$arrow-height : calc(($board-height - $middle-gap-height + 1rem) / 2);
+$arrow-width: $slot-width;
+$arrow-height : calc(($board-height - $middle-gap-height) / 2);
 $arrow-border-side: calc($arrow-width / 2 );
 $arrow-border-base: $arrow-height;
 

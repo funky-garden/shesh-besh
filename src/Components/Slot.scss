@@ -1,0 +1,23 @@
+@import 'src/Styles/mixin.scss';
+@import 'src/Styles/variables.scss';
+
+.slot {
+    position: relative;
+    width: $slot-width;
+    height: $slot-height;
+}
+
+.slot-layer {
+    position: absolute;
+    width: $slot-width;
+    height: $slot-height;
+}
+
+.top {
+    @include flexStart;
+}
+
+.bottom {
+    @include flexEnd;
+}
+

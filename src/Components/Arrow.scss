@@ -1,0 +1,31 @@
+@import 'src/Styles/mixin.scss';
+@import 'src/Styles/variables.scss';
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: $arrow-border-side solid transparent;
+    border-right: $arrow-border-side solid transparent;
+}
+
+.arrow-white {
+    border-top-color: $white;
+    border-bottom-color: $white;
+}
+
+.arrow-black {
+    border-top-color: $black;
+    border-bottom-color: $black;
+}
+
+.arrow-top {
+    @extend .arrow;
+    border-top-width: $arrow-border-base;
+    border-top-style: solid;
+}
+
+.arrow-bottom {
+    @extend .arrow;
+    border-bottom-width: $arrow-border-base;
+    border-bottom-style: solid;
+}
