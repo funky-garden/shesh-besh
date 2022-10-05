@@ -23,12 +23,14 @@ const Slot = ({ index, section, numPieces, click, updateLocation}) => {
     const arrow =  <Arrow section={section} index={index} />
 
 
-    let whitePieces = [...Array(numPieces[0]).keys()].map(_ => {
-        return <Piece click={() => click(index, 0)} color='white' index={index} />
+    let whitePieces = [...Array(numPieces[0]).keys()].map(num => {
+        const key = `piece-white-${index}-${num}`
+        return <Piece click={() => click(index, 0)} color='white' index={index} key={key}/>
     })
 
-    let blackPieces = [...Array(numPieces[1]).keys()].map(_ => {
-        return <Piece click={() => click(index, 1)} color='black' index={index} />
+    let blackPieces = [...Array(numPieces[1]).keys()].map(num => {
+        const key = `piece-black-${index}-${num}`
+        return <Piece click={() => click(index, 1)} color='black' index={index} key={key}/>
     })
 
     const num = (

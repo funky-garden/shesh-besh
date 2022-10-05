@@ -3,8 +3,8 @@ import './Piece.scss'
 
 import { dragEnd, dragStart } from '../Dragger.js'
 const Piece = ({ click, color, index }) => {
-    const style = { 'backgroundColor' : color}
 
+    const style = { 'backgroundColor' : color}
     const colorIndex = color === 'white' ? 0 : 1
     const newOnDrag = (e) => {
         dragStart(e, index, colorIndex)

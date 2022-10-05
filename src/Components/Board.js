@@ -34,7 +34,7 @@ const Quarter = ({ index, pieces, click, updateLocation }) => {
     return (
         <div className='quarter'>
         {slots}
-    </div>
+        </div>
     )
 }
 
