@@ -1,5 +1,4 @@
-# Sesh-Besh (backgammon)
-
+# Shesh-Besh (backgammon)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

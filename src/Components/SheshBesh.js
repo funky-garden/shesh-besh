@@ -1,8 +1,8 @@
 import React from 'react'
-import './SeshBesh.scss'
+import './SheshBesh.scss'
 import Board from './Board'
 
-export const SeshBesh = () => {
+export const SheshBesh = () => {
     return (
         <div className='gameContainer'>
             <Board />
@@ -10,5 +10,5 @@ export const SeshBesh = () => {
     )
 }
 
-export default SeshBesh
+export default SheshBesh
 

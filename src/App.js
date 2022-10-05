@@ -1,9 +1,9 @@
-import SeshBesh from './Components/SeshBesh'
+import SheshBesh from './Components/SheshBesh'
 
 function App() {
   return (
     <div className="App">
-        <SeshBesh />
+        <SheshBesh />
     </div>
   );
 }
