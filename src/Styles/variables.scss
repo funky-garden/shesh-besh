@@ -1,11 +1,11 @@
 
 // Fixed board size
 $board-container-width: 100rem;
-$board-container-height: 80rem;
+$board-container-height: 90rem;
 $border-width: 2rem;
 
 //Other fixed sizes
-$middle-gap-height: 2rem; // space between arrows
+$middle-gap-height: 5rem; // space between arrows
 
 // Inner Board Dimensions
 $board-width: calc($board-container-width - (2 * $border-width));

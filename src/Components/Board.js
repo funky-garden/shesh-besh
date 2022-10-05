@@ -11,20 +11,30 @@ const getSlotIndex = (quarterIndex, slotIndex) => {
     }
 }
 
-const Quarter = ({ index, pieces, click }) => {
+const Quarter = ({ index, pieces, click, updateLocation }) => {
     const section = index < 2 ? 'top' : 'bottom'
 
     const slots = [...Array(6).keys()].map(i => {
         const slotIndex = getSlotIndex(index, i)
         const whitePieces = pieces[0][slotIndex]
         const blackPieces = pieces[1][slotIndex]
-        return <Slot section={section} index={slotIndex} numPieces={[whitePieces, blackPieces]} click={click}/>
+        const key = `slot-${slotIndex}`
+        return (
+            <Slot
+            section={section}
+            index={slotIndex}
+            numPieces={[whitePieces, blackPieces]}
+            click={click}
+            updateLocation={updateLocation}
+            key={key}
+            />
+        )
     })
 
     return (
         <div className='quarter'>
-            {slots}
-        </div>
+        {slots}
+    </div>
     )
 }
 
@@ -33,12 +43,12 @@ const MiddleGap = () => {
         <div className='middleGap'/>
     )
 }
-const Half = ({ index, pieces, click }) => {
+const Half = ({ index, pieces, click, updateLocation }) => {
     return (
         <div className='half'>
-            <Quarter index={index[0]} pieces={pieces} click={click} />
+            <Quarter index={index[0]} pieces={pieces} click={click} updateLocation={updateLocation}/>
             <MiddleGap/>
-            <Quarter index={index[1]} pieces={pieces} click={click}/>
+            <Quarter index={index[1]} pieces={pieces} click={click} updateLocation={updateLocation}/>
         </div>
     )
 }
@@ -67,11 +77,18 @@ export const Board = () => {
         setPieces(newPieces)
     }
 
+    const updateLocation = (startIndex, endIndex, colorIndex) => {
+        let newPieces = [...gamePieces]
+        newPieces[colorIndex][startIndex]--
+        newPieces[colorIndex][endIndex]++
+        setPieces(newPieces)
+    }
+
 
     return (
         <div className='board'>
-            <Half index={[1, 2]} pieces={gamePieces} click={onClick}/>
-            <Half index={[0, 3]} pieces={gamePieces} click={onClick}/>
+            <Half index={[1, 2]} pieces={gamePieces} click={onClick} key='half-1' updateLocation={updateLocation}/>
+            <Half index={[0, 3]} pieces={gamePieces} click={onClick} key='half-2' updateLocation={updateLocation}/>
         </div>
     )
 }

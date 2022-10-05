@@ -1,9 +1,16 @@
 import React from 'react'
 import './Piece.scss'
 
-const Piece = ({ click, color }) => {
+import { dragEnd, dragStart } from '../Dragger.js'
+const Piece = ({ click, color, index }) => {
     const style = { 'backgroundColor' : color}
-    return <div className='piece' draggable onClick={click} style={style}/>
+
+    const colorIndex = color === 'white' ? 0 : 1
+    const newOnDrag = (e) => {
+        dragStart(e, index, colorIndex)
+    }
+
+    return <div className='piece' onDragEnd={dragEnd} onDragStart={newOnDrag} draggable onClick={click} style={style}/>
 }
 
 export default Piece
