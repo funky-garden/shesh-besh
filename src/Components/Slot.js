@@ -25,12 +25,12 @@ const Slot = ({ index, section, numPieces, click, updateLocation}) => {
 
     let whitePieces = [...Array(numPieces[0]).keys()].map(num => {
         const key = `piece-white-${index}-${num}`
-        return <Piece click={() => click(index, 0)} color='white' index={index} key={key}/>
+        return <Piece updateLocation={updateLocation} color='white' index={index} key={key}/>
     })
 
     let blackPieces = [...Array(numPieces[1]).keys()].map(num => {
         const key = `piece-black-${index}-${num}`
-        return <Piece click={() => click(index, 1)} color='black' index={index} key={key}/>
+        return <Piece updateLocation={updateLocation} color='black' index={index} key={key}/>
     })
 
     const num = (

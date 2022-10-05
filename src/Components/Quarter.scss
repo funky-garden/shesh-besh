@@ -1,0 +1,35 @@
+@import 'src/Styles/mixin.scss';
+@import 'src/Styles/variables.scss';
+
+
+.quarter-top {
+    @include flexStart
+}
+
+.quarter-bottom{
+    @include flexEnd
+}
+
+.quarter {
+    @include flexStart;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+}
+
+.middleGap {
+    width: 100%;
+    height: $middle-gap-height
+}
+
+.half {
+    @include flexStart;
+    flex-direction: column;
+    width: $board-width;
+    height: $board-height;
+    background-color: $wood;
+    border-style: solid;
+    border-width: 2rem;
+}
+
+

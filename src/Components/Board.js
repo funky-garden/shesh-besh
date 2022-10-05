@@ -1,54 +1,19 @@
 import React, { useState } from 'react'
 import './Board.scss'
-import Slot from './Slot.js'
-
-const getSlotIndex = (quarterIndex, slotIndex) => {
-    if(quarterIndex < 2) {
-        return (6 * quarterIndex ) + ( 5 - slotIndex)
-    }
-    else {
-        return (quarterIndex * 6) + slotIndex
-    }
-}
-
-const Quarter = ({ index, pieces, click, updateLocation }) => {
-    const section = index < 2 ? 'top' : 'bottom'
-
-    const slots = [...Array(6).keys()].map(i => {
-        const slotIndex = getSlotIndex(index, i)
-        const whitePieces = pieces[0][slotIndex]
-        const blackPieces = pieces[1][slotIndex]
-        const key = `slot-${slotIndex}`
-        return (
-            <Slot
-            section={section}
-            index={slotIndex}
-            numPieces={[whitePieces, blackPieces]}
-            click={click}
-            updateLocation={updateLocation}
-            key={key}
-            />
-        )
-    })
-
-    return (
-        <div className='quarter'>
-        {slots}
-        </div>
-    )
-}
+import Quarter from './Quarter'
 
 const MiddleGap = () => {
     return (
         <div className='middleGap'/>
     )
 }
-const Half = ({ index, pieces, click, updateLocation }) => {
+
+const Half = ({ index, pieces, updateLocation }) => {
     return (
         <div className='half'>
-            <Quarter index={index[0]} pieces={pieces} click={click} updateLocation={updateLocation}/>
+            <Quarter index={index[0]} pieces={pieces} updateLocation={updateLocation}/>
             <MiddleGap/>
-            <Quarter index={index[1]} pieces={pieces} click={click} updateLocation={updateLocation}/>
+            <Quarter index={index[1]} pieces={pieces} updateLocation={updateLocation}/>
         </div>
     )
 }
@@ -69,15 +34,12 @@ export const Board = () => {
         gamePieces = pieces
     }
 
-
-    const onClick = (index, color) => {
-        let newPieces = [...gamePieces]
-        newPieces[color][index]--
-        newPieces[color][(index + 1) % 24]++
-        setPieces(newPieces)
-    }
-
     const updateLocation = (startIndex, endIndex, colorIndex) => {
+        endIndex = endIndex % 24
+        if(gamePieces[(colorIndex + 1) % 2][endIndex] > 1 ) {
+            // trying to move to a space with more than one enemy
+            return
+        }
         let newPieces = [...gamePieces]
         newPieces[colorIndex][startIndex]--
         newPieces[colorIndex][endIndex]++
@@ -87,8 +49,8 @@ export const Board = () => {
 
     return (
         <div className='board'>
-            <Half index={[1, 2]} pieces={gamePieces} click={onClick} key='half-1' updateLocation={updateLocation}/>
-            <Half index={[0, 3]} pieces={gamePieces} click={onClick} key='half-2' updateLocation={updateLocation}/>
+            <Half index={[1, 2]} pieces={gamePieces} key='half-1' updateLocation={updateLocation}/>
+            <Half index={[0, 3]} pieces={gamePieces} updateLocation={updateLocation}/>
         </div>
     )
 }
