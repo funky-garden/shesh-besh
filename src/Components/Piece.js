@@ -1,20 +1,17 @@
 import React from 'react'
 import './Piece.scss'
-
 import { dragEnd, dragStart } from '../Dragger.js'
-const Piece = ({ color, index, updateLocation}) => {
 
-    const style = { 'backgroundColor' : color}
-    const colorIndex = color === 'white' ? 0 : 1
-    const newOnDrag = (e) => {
-        dragStart(e, index, colorIndex)
+const Piece = ({ team, index }) => {
+
+
+    const onDragStart = (e) => {
+        dragStart(e, { team, index})
     }
 
-    const click = () => {
-        updateLocation(index, index + 1, colorIndex)
-    }
+    const className = `piece team${team}`
 
-    return <div className='piece' onDragEnd={dragEnd} onDragStart={newOnDrag} draggable onClick={click} style={style}/>
+    return <div className={className} onDragEnd={dragEnd} onDragStart={onDragStart} draggable />
 }
 
 export default Piece

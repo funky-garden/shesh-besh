@@ -5,7 +5,21 @@ import Arrow from './Arrow.js'
 import Piece from './Piece.js'
 import { dragOver, drop } from '../Dragger.js'
 
-const Slot = ({ index, section, numPieces, click, updateLocation}) => {
+const createPieces = (numPieces, index) => {
+    const num  = numPieces[0] || numPieces[1]
+    if(!num) {
+        return []
+    }
+    const team = numPieces[0] ? '0' : '1'
+
+    const pieces = [...Array(num).keys()].map(ind => {
+        return <Piece team={team} index={index}/>
+    })
+    return pieces
+
+}
+
+const Slot = ({ index, section, numPieces, updateLocation}) => {
 
     let slotCount = 0
     const SlotLayer = (contents) => {
@@ -19,23 +33,10 @@ const Slot = ({ index, section, numPieces, click, updateLocation}) => {
         )
     }
 
+    const arrowLayer =  <Arrow section={section} index={index} />
+    const indexLayer =  <div>{index}</div>
 
-    const arrow =  <Arrow section={section} index={index} />
-
-
-    let whitePieces = [...Array(numPieces[0]).keys()].map(num => {
-        const key = `piece-white-${index}-${num}`
-        return <Piece updateLocation={updateLocation} color='white' index={index} key={key}/>
-    })
-
-    let blackPieces = [...Array(numPieces[1]).keys()].map(num => {
-        const key = `piece-black-${index}-${num}`
-        return <Piece updateLocation={updateLocation} color='black' index={index} key={key}/>
-    })
-
-    const num = (
-        <div>{index}</div>
-    )
+    const pieceLayer = createPieces(numPieces, index)
 
     const newDragOver = (e) => {
         dragOver(e, index)
@@ -47,9 +48,9 @@ const Slot = ({ index, section, numPieces, click, updateLocation}) => {
 
     return (
         <div className='slot' onDragOver={newDragOver} onDrop={newDrop}>
-            {SlotLayer(arrow)}
-            {SlotLayer(num)}
-            {SlotLayer([...whitePieces, ...blackPieces])}
+            {SlotLayer(arrowLayer)}
+            {SlotLayer(indexLayer)}
+            {SlotLayer(pieceLayer)}
         </div>
     )
 }

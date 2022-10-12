@@ -18,39 +18,36 @@ const Half = ({ index, pieces, updateLocation }) => {
     )
 }
 
+
+const startingBoard = () => {
+    let whitePieces = Array(24).fill(0)
+    let blackPieces = Array(24).fill(0)
+    whitePieces[1] = 4
+    blackPieces[10] = 4
+    return [ whitePieces, blackPieces ]
+}
+
 export const Board = () => {
 
-    const [ pieces, setPieces ] = useState()
-    let gamePieces
-    if(!pieces) {
-        gamePieces =  [
-            Array(24),
-            Array(24)
-        ]
-        gamePieces.forEach(a => a.fill(0))
-        gamePieces[0][0] = 3
-        gamePieces[1][10] = 3
-    } else {
-        gamePieces = pieces
-    }
+    const [ pieces, setPieces ] = useState(startingBoard())
 
-    const updateLocation = (startIndex, endIndex, colorIndex) => {
-        endIndex = endIndex % 24
-        if(gamePieces[(colorIndex + 1) % 2][endIndex] > 1 ) {
+    const updateLocation = (piece, endIndex) => {
+        const oppTeam = (Number(piece.team) + 1) % 2
+        if(pieces[oppTeam][endIndex] > 1 ) {
             // trying to move to a space with more than one enemy
             return
         }
-        let newPieces = [...gamePieces]
-        newPieces[colorIndex][startIndex]--
-        newPieces[colorIndex][endIndex]++
+        let newPieces = [...pieces]
+        newPieces[Number(piece.team)][piece.index]--
+        newPieces[Number(piece.team)][endIndex]++
         setPieces(newPieces)
     }
 
 
     return (
         <div className='board'>
-            <Half index={[1, 2]} pieces={gamePieces} key='half-1' updateLocation={updateLocation}/>
-            <Half index={[0, 3]} pieces={gamePieces} updateLocation={updateLocation}/>
+            <Half index={[1, 2]} pieces={pieces} key='half-1' updateLocation={updateLocation}/>
+            <Half index={[0, 3]} pieces={pieces} updateLocation={updateLocation}/>
         </div>
     )
 }

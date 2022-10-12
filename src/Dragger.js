@@ -1,24 +1,18 @@
-let dragging = null
-let startingIndexDrag = null
-let colorIndex = null
+let draggingPiece = null
 
-export const dragStart = (e, index, colorInd) => {
-    dragging = e.target
-    startingIndexDrag = index
-    colorIndex = colorInd
+export const dragStart = (e, piece) => {
+    draggingPiece = piece
 }
 
 export const dragEnd= () => {
-    dragging = null
-    startingIndexDrag = null
-    colorIndex = null
+    draggingPiece = null
 }
 
-export const dragOver = (event, index ) => {
+export const dragOver = (event) => {
     event.preventDefault()
 }
 
 export const drop = (event, endingIndex, updateLocation) => {
-    updateLocation(startingIndexDrag, endingIndex, colorIndex)
+    updateLocation(draggingPiece, endingIndex)
 }
 
