@@ -20,11 +20,17 @@ const Half = ({ index, pieces, updateLocation }) => {
 
 
 const startingBoard = () => {
-    let whitePieces = Array(24).fill(0)
-    let blackPieces = Array(24).fill(0)
-    whitePieces[1] = 4
-    blackPieces[10] = 4
-    return [ whitePieces, blackPieces ]
+    let team0 = Array(24).fill(0)
+    let team1 = Array(24).fill(0)
+    team0[23] = 2
+    team0[12] = 5
+    team0[7] = 3
+    team0[5] = 5
+    team1[0] = 2
+    team1[11] = 5
+    team1[16] = 3
+    team1[18] = 5
+    return [ team0, team1 ]
 }
 
 export const Board = () => {
