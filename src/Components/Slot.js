@@ -42,12 +42,12 @@ const Slot = ({ index, section, numPieces, updateLocation}) => {
         dragOver(e, index)
     }
 
-    const newDrop = (e) => {
+    const onDrop = (e) => {
         drop(e, index, updateLocation)
     }
 
     return (
-        <div className='slot' onDragOver={newDragOver} onDrop={newDrop}>
+        <div className='slot' onDragOver={newDragOver} onDrop={onDrop}>
             {SlotLayer(arrowLayer)}
             {SlotLayer(indexLayer)}
             {SlotLayer(pieceLayer)}

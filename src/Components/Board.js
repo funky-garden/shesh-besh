@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './Board.scss'
 import Quarter from './Quarter'
 
@@ -33,11 +33,17 @@ const startingBoard = () => {
     return [ team0, team1 ]
 }
 
-export const Board = () => {
+export const Board = ({ advanceTurn, turn }) => {
 
     const [ pieces, setPieces ] = useState(startingBoard())
 
+
     const updateLocation = (piece, endIndex) => {
+        console.log(piece)
+        if(piece.team !== turn ) {
+            console.log('its not your turn')
+            return
+        }
         const oppTeam = (Number(piece.team) + 1) % 2
         if(pieces[oppTeam][endIndex] > 1 ) {
             // trying to move to a space with more than one enemy
@@ -46,6 +52,7 @@ export const Board = () => {
         let newPieces = [...pieces]
         newPieces[Number(piece.team)][piece.index]--
         newPieces[Number(piece.team)][endIndex]++
+        advanceTurn()
         setPieces(newPieces)
     }
 

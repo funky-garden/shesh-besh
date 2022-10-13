@@ -6,7 +6,7 @@ const Piece = ({ team, index }) => {
 
 
     const onDragStart = (e) => {
-        dragStart(e, { team, index})
+        dragStart(e, { team : Number(team), index})
     }
 
     const className = `piece team${team}`

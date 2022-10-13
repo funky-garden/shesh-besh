@@ -1,0 +1,29 @@
+@import 'src/Styles/mixin.scss';
+@import 'src/Styles/variables.scss';
+
+.topbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.diceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    font-size: 50px;
+}
+
+
+.turnIndicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 50%;
+    font-size: 50px;
+}
