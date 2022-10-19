@@ -6,10 +6,10 @@
     height: 100vh;
     background-color: $blue;
     flex-direction: column;
+    @include flexCenter;
 }
 
 .gameContainer {
     @include flexCenter;
     flex-direction: column;
-    height: 100vh;
 }

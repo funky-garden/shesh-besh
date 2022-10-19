@@ -33,26 +33,38 @@ const startingBoard = () => {
     return [ team0, team1 ]
 }
 
-export const Board = ({ advanceTurn, turn }) => {
+export const Board = ({ advanceTurn, turn, dice, pendingMoves, setPendingMoves }) => {
 
     const [ pieces, setPieces ] = useState(startingBoard())
 
 
     const updateLocation = (piece, endIndex) => {
-        console.log(piece)
+
+        if(dice[0] === 0) {
+            console.log('invalid move, roll dice')
+            return
+        }
+
         if(piece.team !== turn ) {
-            console.log('its not your turn')
+            console.log('invalid move, turn')
+            return
+        }
+
+        const distanceToMove = Math.abs(endIndex - piece.index)
+        console.log(distanceToMove)
+        console.log(dice)
+        if(distanceToMove !== dice[0] && distanceToMove !== dice[1]) {
+            console.log('invalid move, distance')
             return
         }
         const oppTeam = (Number(piece.team) + 1) % 2
         if(pieces[oppTeam][endIndex] > 1 ) {
-            // trying to move to a space with more than one enemy
+            console.log('invalid move, occupied')
             return
         }
         let newPieces = [...pieces]
         newPieces[Number(piece.team)][piece.index]--
         newPieces[Number(piece.team)][endIndex]++
-        advanceTurn()
         setPieces(newPieces)
     }
 
